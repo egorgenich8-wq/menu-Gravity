@@ -1,10 +1,9 @@
-[menu.html](https://github.com/user-attachments/files/27770132/menu.html)
 <!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Меню ресторана — точная копия из PDF</title>
+    <title>Меню | Капучино оттенки | Ресторан</title>
     <style>
         * {
             margin: 0;
@@ -13,302 +12,251 @@
         }
 
         body {
-            background-color: #faf7f0;  /* тёплый бумажный оттенок */
-            font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', sans-serif;
-            padding: 30px 20px;
-            color: #1e1b16;
+            background: #d9c7b3;  /* фон — тёплый капучино с молочным отливом */
+            font-family: 'Inter', 'Segoe UI', 'Roboto', system-ui, -apple-system, 'Helvetica Neue', sans-serif;
+            padding: 2rem 1.5rem;
+            color: #2b211b;
         }
 
-        /* контейнер в стиле ресторанного листа */
+        /* главный контейнер — матовый, сливочно-кофейный */
         .menu-container {
-            max-width: 1100px;
+            max-width: 1280px;
             margin: 0 auto;
-            background-color: #ffffff;
-            border-radius: 32px;
-            box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.1);
+            background: #fbf7f0;  /* основа цвета latte */
+            border-radius: 36px;
+            box-shadow: 0 25px 45px -12px rgba(60, 40, 25, 0.35);
             overflow: hidden;
-            padding: 28px 24px 40px 24px;
-            border: 1px solid #f0e3cf;
+            border: 1px solid #e2cfb6;
         }
 
-        /* заголовок (стилизованный) */
-        .menu-header {
-            text-align: center;
-            margin-bottom: 35px;
-            border-bottom: 2px dashed #d9c6a7;
-            padding-bottom: 20px;
+        /* внутренний отступ, без шапки (строгость) */
+        .menu-inner {
+            padding: 2.2rem 2rem 2.5rem;
         }
 
-        .menu-header h1 {
-            font-size: 2.5rem;
-            letter-spacing: 1px;
-            font-weight: 600;
-            color: #3a2c1f;
-            font-family: 'Georgia', serif;
-        }
-
-        .menu-header p {
-            color: #8b7658;
-            margin-top: 8px;
-            font-size: 0.9rem;
-        }
-
-        /* блоки категорий — табличная сетка */
+        /* категории с акцентами под капучино */
         .category {
-            margin-bottom: 40px;
-            border-bottom: 1px solid #f0e2d0;
-            padding-bottom: 20px;
+            margin-bottom: 2.8rem;
         }
 
         .category-title {
-            font-size: 1.7rem;
-            font-weight: 700;
-            color: #b45f2b;
-            border-left: 6px solid #e6ba7c;
-            padding-left: 18px;
-            margin-bottom: 20px;
-            margin-top: 10px;
-            font-family: 'Georgia', serif;
-            letter-spacing: -0.3px;
-        }
-
-        /* таблица: классическое отображение "позиция - цена" */
-        .menu-table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 1rem;
-        }
-
-        .menu-table td {
-            padding: 10px 8px 10px 0;
-            border-bottom: 1px dotted #e9dfcf;
-            vertical-align: baseline;
-        }
-
-        .menu-table tr:last-child td {
-            border-bottom: none;
-        }
-
-        .item-name {
-            font-weight: 500;
-            color: #2c241a;
-            width: 70%;
-            font-size: 1rem;
-        }
-
-        .item-price {
-            text-align: right;
+            font-family: 'Georgia', 'Times New Roman', serif;
+            font-size: 1.65rem;
             font-weight: 600;
-            color: #a55724;
-            white-space: nowrap;
-            width: 30%;
-            font-size: 1rem;
+            color: #7b4a2e;  /* тёмно-коричневый, как кортado */
+            border-left: 6px solid #bb8b64;
+            padding-left: 20px;
+            margin-bottom: 1.4rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            letter-spacing: -0.2px;
         }
 
-        /* для строк с двойными позициями или описаниями (как "Хычины сыр, зелень") */
-        .sub-text {
-            font-size: 0.9rem;
-            color: #6b5a44;
-            font-weight: normal;
-            display: inline-block;
-            margin-left: 0px;
+        .category-title span {
+            font-size: 0.7rem;
+            background: #ede3d5;
+            padding: 4px 12px;
+            border-radius: 50px;
+            font-weight: 500;
+            color: #8f623f;
+            font-family: system-ui, sans-serif;
+            letter-spacing: normal;
         }
 
-        /* для разделов где позиции идут вперемешку (как оригинал: чебуреки, хычины, напитки) */
-        .double-col-grid {
+        /* сетка блюд */
+        .items-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 6px 20px;
+            grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+            gap: 12px 20px;
         }
 
-        .grid-item {
+        /* карточка блюда — строгая, но благородная */
+        .menu-item {
             display: flex;
             justify-content: space-between;
             align-items: baseline;
-            padding: 8px 0;
-            border-bottom: 1px dotted #eee3d4;
-            flex-wrap: wrap;
-        }
-
-        .grid-item-name {
-            font-weight: 500;
-            color: #2c241a;
-            font-size: 0.98rem;
-        }
-
-        .grid-item-price {
-            font-weight: 600;
-            color: #a55724;
-            white-space: nowrap;
-            margin-left: 12px;
-        }
-
-        /* специальные блоки как "напитки", чтобы сохранить плотность */
-        .inline-group {
-            margin-top: 12px;
-        }
-
-        /* акцент для особых блюд (мангал, шашлык) */
-        .highlight-bg {
-            background-color: #fef6ea;
+            background: #ffffff;
+            padding: 12px 18px;
             border-radius: 20px;
-            padding: 12px 16px;
-            margin-top: 12px;
+            border: 1px solid #e5d5c0;
+            transition: all 0.2s ease;
+            cursor: default;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.02);
         }
 
-        hr {
-            margin: 15px 0;
-            border: 0;
-            height: 1px;
-            background: #e9dbca;
+        .menu-item:hover {
+            background: #fef7ef;
+            border-color: #cfa97e;
+            transform: translateX(3px);
         }
 
-        /* адаптив */
+        .item-name {
+            font-weight: 600;
+            font-size: 1rem;
+            color: #38281d;
+            letter-spacing: -0.2px;
+            word-break: break-word;
+        }
+
+        .item-price {
+            font-weight: 700;
+            font-size: 1rem;
+            color: #a56338;
+            background: #f5ebe0;
+            padding: 3px 12px;
+            border-radius: 60px;
+            white-space: nowrap;
+            margin-left: 16px;
+            font-family: 'JetBrains Mono', monospace, 'Courier New';
+        }
+
+        /* блок напитков с более глубоким кофейным подтоном */
+        .drinks-wrap {
+            background: #fdf9f2;
+            border-radius: 28px;
+            padding: 0.8rem 0.5rem 0.5rem 0.8rem;
+            border: 1px solid #e0ceb4;
+        }
+
+        /* футер — сдержанный, эспрессо-оттенок */
+        .footer-thin {
+            margin-top: 2rem;
+            text-align: center;
+            font-size: 0.7rem;
+            color: #a27b59;
+            border-top: 1px solid #e4d3be;
+            padding-top: 1.6rem;
+            letter-spacing: 0.3px;
+        }
+
         @media (max-width: 650px) {
-            .menu-container {
-                padding: 18px 16px;
+            body {
+                padding: 1rem;
+            }
+            .menu-inner {
+                padding: 1.5rem;
             }
             .category-title {
                 font-size: 1.4rem;
             }
-            .item-name, .grid-item-name {
+            .menu-item {
+                padding: 10px 14px;
+            }
+            .item-name {
                 font-size: 0.92rem;
             }
-            .item-price, .grid-item-price {
-                font-size: 0.9rem;
-            }
-        }
-
-        /* простой футер */
-        .footer-note {
-            margin-top: 40px;
-            text-align: center;
-            font-size: 0.75rem;
-            color: #b6976e;
-            border-top: 1px solid #efdfcc;
-            padding-top: 20px;
-        }
-
-        /* точное отображение названий, как в PDF */
-        .spec-marker {
-            font-weight: 400;
-            color: #846e4a;
         }
     </style>
 </head>
 <body>
 <div class="menu-container">
-    <div class="menu-header">
-        <h1>🍽️ МЕНЮ</h1>
-        <p>традиционная кухня | приготовление на мангале | домашние рецепты</p>
-    </div>
+    <div class="menu-inner">
 
-    <!-- =========================== -->
-    <!-- БЛОК 1: ЗАВТРАКИ / СУПЫ / ГОРЯЧИЕ БЛЮДА (как в PDF слитно) -->
-    <!-- =========================== -->
-    <div class="category">
-        <div class="category-title">ЗАВТРАКИ · СУПЫ · ГОРЯЧИЕ БЛЮДА</div>
-        <table class="menu-table">
-            <tr><td class="item-name">Шорпа</td><td class="item-price">400₽</td></tr>
-            <tr><td class="item-name">Латман</td><td class="item-price">400₽</td></tr>
-            <tr><td class="item-name">Манты</td><td class="item-price">400₽</td></tr>
-            <tr><td class="item-name">Омлет</td><td class="item-price">250₽</td></tr>
-            <tr><td class="item-name">Шакшука</td><td class="item-price">250₽</td></tr>
-            <tr><td class="item-name">Яичница</td><td class="item-price">150₽</td></tr>
-            <tr><td class="item-name">Блины 3 шт с ягодами</td><td class="item-price">230₽</td></tr>
-            <tr><td class="item-name">Сырники</td><td class="item-price">250₽</td></tr>
-            <tr><td class="item-name">Каши (в ассортименте)</td><td class="item-price">100₽</td></tr>
-        </table>
-    </div>
-
-    <!-- =========================== -->
-    <!-- ХЫЧИНЫ БАЛКАРСКИЕ / ВЫПЕЧКА   (точное соответствие) -->
-    <!-- =========================== -->
-    <div class="category">
-        <div class="category-title">ХЫЧИНЫ БАЛКАРСКИЕ / ВЫПЕЧКА</div>
-        <table class="menu-table">
-            <tr><td class="item-name">Хычины с мясом</td><td class="item-price">250₽</td></tr>
-            <tr><td class="item-name">Хычины (сыр, зелень)</td><td class="item-price">180₽</td></tr>
-            <tr><td class="item-name">Хычины (сыр, картошка)</td><td class="item-price">180₽</td></tr>
-        </table>
-    </div>
-
-    <!-- =========================== -->
-    <!-- САЛАТЫ (полностью как в PDF, плюс замечен дубль "Хычины сыр картошка" но в оригинале так и есть) -->
-    <!-- =========================== -->
-    <div class="category">
-        <div class="category-title">САЛАТЫ</div>
-        <!-- В PDF подряд: Хычины (сыр, картошка) 180₽, потом Овощи нарезка, салат овощной и тд. 
-             Максимальная точность: сохраняем порядок и повторяющуюся строку, как в исходнике -->
-        <table class="menu-table">
-            <tr><td class="item-name">Хычины (сыр, картошка)</td><td class="item-price">180₽</td></tr>
-            <tr><td class="item-name">Овощи (нарезка)</td><td class="item-price">450₽</td></tr>
-            <tr><td class="item-name">Салат овощной</td><td class="item-price">200₽</td></tr>
-            <tr><td class="item-name">Морковный салат</td><td class="item-price">120₽</td></tr>
-            <tr><td class="item-name">Свекольный салат</td><td class="item-price">150₽</td></tr>
-            <tr><td class="item-name">Греческий салат</td><td class="item-price">350₽</td></tr>
-        </table>
-    </div>
-
-    <!-- =========================== -->
-    <!-- ЧЕБУРЕКИ (с сыром / с мясом) +  (В PDF идут после салатов перед НАПИТКИ/ШАШЛЫК) -->
-    <!-- =========================== -->
-    <div class="category">
-        <div class="category-title">ЧЕБУРЕКИ</div>
-        <table class="menu-table">
-            <tr><td class="item-name">Чебуреки с сыром</td><td class="item-price">200₽</td></tr>
-            <tr><td class="item-name">Чебуреки с мясом</td><td class="item-price">230₽</td></tr>
-        </table>
-    </div>
-
-    <!-- =========================== -->
-    <!-- БЛОК: ШАШЛЫК / БЛЮДА НА МАНГАЛЕ  (самый объёмный) -->
-    <!-- =========================== -->
-    <div class="category">
-        <div class="category-title">ШАШЛЫК / БЛЮДА НА МАНГАЛЕ</div>
-        <div class="double-col-grid">
-            <div class="grid-item"><span class="grid-item-name">Баранина мякоть</span><span class="grid-item-price">1000₽</span></div>
-            <div class="grid-item"><span class="grid-item-name">Баранина спинка</span><span class="grid-item-price">900₽</span></div>
-            <div class="grid-item"><span class="grid-item-name">Телятина мякоть</span><span class="grid-item-price">1000₽</span></div>
-            <div class="grid-item"><span class="grid-item-name">Куриный шашлык</span><span class="grid-item-price">700₽</span></div>
-            <div class="grid-item"><span class="grid-item-name">Жау-баур</span><span class="grid-item-price">400₽</span></div>
-            <div class="grid-item"><span class="grid-item-name">Форель порц</span><span class="grid-item-price">800₽</span></div>
-            <div class="grid-item"><span class="grid-item-name">Люля</span><span class="grid-item-price">300₽</span></div>
-            <div class="grid-item"><span class="grid-item-name">Овощи на мангале</span><span class="grid-item-price">450₽</span></div>
-            <div class="grid-item"><span class="grid-item-name">Карп</span><span class="grid-item-price">750₽</span></div>
-            <div class="grid-item"><span class="grid-item-name">Грибы на мангале</span><span class="grid-item-price">350₽</span></div>
+        <!-- ЗАВТРАКИ / СУПЫ / ГОРЯЧИЕ БЛЮДА -->
+        <div class="category">
+            <div class="category-title">
+                ЗАВТРАКИ · СУПЫ · ГОРЯЧИЕ БЛЮДА
+                <span>домашний уют</span>
+            </div>
+            <div class="items-grid">
+                <div class="menu-item"><div class="item-name">Шорпа</div><div class="item-price">400₽</div></div>
+                <div class="menu-item"><div class="item-name">Латман</div><div class="item-price">400₽</div></div>
+                <div class="menu-item"><div class="item-name">Манты</div><div class="item-price">400₽</div></div>
+                <div class="menu-item"><div class="item-name">Омлет</div><div class="item-price">250₽</div></div>
+                <div class="menu-item"><div class="item-name">Шакшука</div><div class="item-price">250₽</div></div>
+                <div class="menu-item"><div class="item-name">Яичница</div><div class="item-price">150₽</div></div>
+                <div class="menu-item"><div class="item-name">Блины 3 шт с ягодами</div><div class="item-price">230₽</div></div>
+                <div class="menu-item"><div class="item-name">Сырники</div><div class="item-price">250₽</div></div>
+                <div class="menu-item"><div class="item-name">Каши (в ассортименте)</div><div class="item-price">100₽</div></div>
+            </div>
         </div>
-        <!-- в PDF также упомянута "Форель порц 800₽ Люля 300₽ Овощи на мангале ..." уже включены, все идеально -->
-    </div>
 
-    <!-- =========================== -->
-    <!-- НАПИТКИ   отдельный важный раздел (точно по PDF) -->
-    <!-- =========================== -->
-    <div class="category">
-        <div class="category-title">НАПИТКИ</div>
-        <div class="double-col-grid">
-            <div class="grid-item"><span class="grid-item-name">Чай облепиховый 500мл</span><span class="grid-item-price">250₽</span></div>
-            <div class="grid-item"><span class="grid-item-name">Чай травяной 500мл</span><span class="grid-item-price">200₽</span></div>
-            <div class="grid-item"><span class="grid-item-name">Чай черный</span><span class="grid-item-price">30₽</span></div>
-            <div class="grid-item"><span class="grid-item-name">Чай зеленый</span><span class="grid-item-price">30₽</span></div>
-            <div class="grid-item"><span class="grid-item-name">Кофе</span><span class="grid-item-price">80₽</span></div>
-            <div class="grid-item"><span class="grid-item-name">Лимонад</span><span class="grid-item-price">80₽</span></div>
-            <div class="grid-item"><span class="grid-item-name">Айран</span><span class="grid-item-price">50₽</span></div>
+        <!-- ХЫЧИНЫ БАЛКАРСКИЕ -->
+        <div class="category">
+            <div class="category-title">
+                ХЫЧИНЫ БАЛКАРСКИЕ
+                <span>традиционная выпечка</span>
+            </div>
+            <div class="items-grid">
+                <div class="menu-item"><div class="item-name">Хычины с мясом</div><div class="item-price">250₽</div></div>
+                <div class="menu-item"><div class="item-name">Хычины (сыр, зелень)</div><div class="item-price">180₽</div></div>
+                <div class="menu-item"><div class="item-name">Хычины (сыр, картошка)</div><div class="item-price">180₽</div></div>
+            </div>
         </div>
-        <!-- В PDF был еще раз упомянут "Чай облепиховый 500мл/250₽ ..." сохранили единообразно -->
+
+        <!-- САЛАТЫ (точная структура из PDF + дубль хычин) -->
+        <div class="category">
+            <div class="category-title">
+                САЛАТЫ И НАРЕЗКИ
+                <span>свежесть</span>
+            </div>
+            <div class="items-grid">
+                <div class="menu-item"><div class="item-name">Хычины (сыр, картошка)</div><div class="item-price">180₽</div></div>
+                <div class="menu-item"><div class="item-name">Овощи (нарезка)</div><div class="item-price">450₽</div></div>
+                <div class="menu-item"><div class="item-name">Салат овощной</div><div class="item-price">200₽</div></div>
+                <div class="menu-item"><div class="item-name">Морковный салат</div><div class="item-price">120₽</div></div>
+                <div class="menu-item"><div class="item-name">Свекольный салат</div><div class="item-price">150₽</div></div>
+                <div class="menu-item"><div class="item-name">Греческий салат</div><div class="item-price">350₽</div></div>
+            </div>
+        </div>
+
+        <!-- ЧЕБУРЕКИ -->
+        <div class="category">
+            <div class="category-title">
+                ЧЕБУРЕКИ
+                <span>хрустящие, золотистые</span>
+            </div>
+            <div class="items-grid">
+                <div class="menu-item"><div class="item-name">Чебуреки с сыром</div><div class="item-price">200₽</div></div>
+                <div class="menu-item"><div class="item-name">Чебуреки с мясом</div><div class="item-price">230₽</div></div>
+            </div>
+        </div>
+
+        <!-- ШАШЛЫК / БЛЮДА НА МАНГАЛЕ (капучино-стиль: сдержанно) -->
+        <div class="category">
+            <div class="category-title">
+                ШАШЛЫК · БЛЮДА НА МАНГАЛЕ
+                <span>уголь, аромат дыма</span>
+            </div>
+            <div class="items-grid">
+                <div class="menu-item"><div class="item-name">Баранина мякоть</div><div class="item-price">1000₽</div></div>
+                <div class="menu-item"><div class="item-name">Баранина спинка</div><div class="item-price">900₽</div></div>
+                <div class="menu-item"><div class="item-name">Тепятина мякоть</div><div class="item-price">1000₽</div></div>
+                <div class="menu-item"><div class="item-name">Куриный шашлык</div><div class="item-price">700₽</div></div>
+                <div class="menu-item"><div class="item-name">Жау-баур</div><div class="item-price">400₽</div></div>
+                <div class="menu-item"><div class="item-name">Форель порц</div><div class="item-price">800₽</div></div>
+                <div class="menu-item"><div class="item-name">Люля</div><div class="item-price">300₽</div></div>
+                <div class="menu-item"><div class="item-name">Овощи на мангале</div><div class="item-price">450₽</div></div>
+                <div class="menu-item"><div class="item-name">Карп</div><div class="item-price">750₽</div></div>
+                <div class="menu-item"><div class="item-name">Грибы на мангале</div><div class="item-price">350₽</div></div>
+            </div>
+        </div>
+
+        <!-- НАПИТКИ — оттенок молочной пенки -->
+        <div class="category">
+            <div class="category-title">
+                НАПИТКИ
+                <span>облепиха, травы, классика</span>
+            </div>
+            <div class="drinks-wrap">
+                <div class="items-grid">
+                    <div class="menu-item"><div class="item-name">Чай облепиховый 500мл</div><div class="item-price">250₽</div></div>
+                    <div class="menu-item"><div class="item-name">Чай травяной 500мл</div><div class="item-price">200₽</div></div>
+                    <div class="menu-item"><div class="item-name">Чай черный</div><div class="item-price">30₽</div></div>
+                    <div class="menu-item"><div class="item-name">Чай зеленый</div><div class="item-price">30₽</div></div>
+                    <div class="menu-item"><div class="item-name">Кофе</div><div class="item-price">80₽</div></div>
+                    <div class="menu-item"><div class="item-name">Лимонад</div><div class="item-price">80₽</div></div>
+                    <div class="menu-item"><div class="item-name">Айран</div><div class="item-price">50₽</div></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-thin">
+            ⋆ все блюда и цены в точности из оригинального меню ⋆
+        </div>
     </div>
-
-    <!-- =========================== -->
-    <!-- ДОПОЛНИТЕЛЬНО: некоторые элементы из PDF были разбросаны, но мы все собрали -->
-    <!-- =========================== -->
-    <!-- ВНИМАНИЕ: в PDF после "Айран 50₽" заканчивается список, но также ранее в разделе салатов был дубль хычин. 
-         Всё восстановлено идеально. Также в оригинале есть "Хычины (сыр, зелень)" и тд. 
-         Еще в PDF строка "Хычины (сыр, картошка) 180₽" встречается 2 раза (в выпечке и в салатах) — оставили как в исходном документе. -->
-         
-    <!-- для максимальной точности добавим раздел, который мог быть пропущен: Возможно, во второй раз упоминались Хычины с сыром и зеленью в выпечке — уже есть. -->
-    <!-- Также в меню присутствует "Блины 3 шт с ягодами 230₽ Сырники 250₽ Каши 100₽" – всё на своих местах. -->
-
-    <!-- =========================== -->
-    <!-- НЕБОЛЬШОЙ БОНУС: ПОВТОРИМ КОНЦОВКУ PDF, ЧТОБЫ НИЧЕГО НЕ ВЫПАЛО (Грибы на мангале последние) -->
-    <!-- =========================== -->
-    <div class="footer-note">
+</div>
+</body>
+</html>
